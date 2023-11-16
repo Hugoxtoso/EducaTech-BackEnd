@@ -48,4 +48,11 @@ public class Professor {
     @Column(nullable = false)
     private String cpf;
 
+     @Column(nullable = false)
+    private float avaliacao;
+
+    @Column(nullable = false)
+    private float quantidadeavaliacao;
+
+
 }

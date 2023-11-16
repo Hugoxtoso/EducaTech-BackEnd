@@ -1,7 +1,5 @@
 package com.educatech.beckend.repository;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,7 +19,5 @@ public interface AlunoRepository  extends JpaRepository<Aluno, Long>{
 
     @Query("SELECT DISTINCT p FROM Aluno p WHERE p.email = :email and p.senha = :senha")
     java.util.List<Aluno> findUsersByEmailandPass(@Param("email") String email, @Param("senha") String senha);
-
-
 
 }

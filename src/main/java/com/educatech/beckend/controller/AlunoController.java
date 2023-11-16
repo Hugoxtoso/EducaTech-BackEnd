@@ -1,6 +1,7 @@
 package com.educatech.beckend.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,11 +41,35 @@ public class AlunoController {
 
       alunoRepository.save(newAluno);
 
-      
       return true;
     }
 
+    @PostMapping("/buscarid")
+    public Aluno buscarPorID(@RequestBody int n){
+      long id = (long) n;
+      return alunoRepository.findUserById(id);
+      
+    }
+
+    @PutMapping("/editar")
+    public boolean editar(@RequestBody Aluno aluno){
+      Aluno mesmoAluno = alunoRepository.findUserById(aluno.getId());
+
+      if(!mesmoAluno.getEmail().equals(aluno.getEmail())){
+        java.util.List<Aluno> existentAluno = alunoRepository.findUsersByEmail(aluno.getEmail());
+        java.util.List<Professor> existentProfessor = professorRepository.findUsersByEmail(aluno.getEmail());
+
+        if(!existentAluno.isEmpty() || !existentProfessor.isEmpty()){
+          return false;
+        }
+      }
+
+      alunoRepository.save(aluno);
     
+      return true;
+    }
+
+
     
 
 
