@@ -11,7 +11,7 @@ import com.educatech.beckend.model.Aluno;
 @Repository
 public interface AlunoRepository  extends JpaRepository<Aluno, Long>{
 
-    @Query("SELECT DISTINCT p FROM Aluno p WHERE p.id LIKE :id")
+    @Query("SELECT DISTINCT p FROM Aluno p WHERE p.id = :id")
     Aluno findUserById(@Param("id") Long id);
 
     @Query("SELECT DISTINCT p FROM Aluno p WHERE p.email LIKE :email")

@@ -11,7 +11,7 @@ import com.educatech.beckend.model.Professor;
 @Repository
 public interface ProfessorRepository  extends JpaRepository<Professor, Long>{
 
-    @Query("SELECT DISTINCT p FROM Professor p WHERE p.id LIKE :id")
+    @Query("SELECT DISTINCT p FROM Professor p WHERE p.id = :id")
     Professor findUserById(@Param("id") Long id);
 
     @Query("SELECT DISTINCT p FROM Professor p WHERE p.email LIKE :email")
